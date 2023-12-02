@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationLayer", "SalesControlAppWin\PresentationLayer.csproj", "{DCE02A04-44D9-43C5-80FC-D3ECA95F5186}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModels", "ViewModels\ViewModels.csproj", "{973D62FE-C9DA-42F7-891A-7D1BCDBFDADD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{DCE02A04-44D9-43C5-80FC-D3ECA95F5186}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCE02A04-44D9-43C5-80FC-D3ECA95F5186}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCE02A04-44D9-43C5-80FC-D3ECA95F5186}.Release|Any CPU.Build.0 = Release|Any CPU
+		{973D62FE-C9DA-42F7-891A-7D1BCDBFDADD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{973D62FE-C9DA-42F7-891A-7D1BCDBFDADD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{973D62FE-C9DA-42F7-891A-7D1BCDBFDADD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{973D62FE-C9DA-42F7-891A-7D1BCDBFDADD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
