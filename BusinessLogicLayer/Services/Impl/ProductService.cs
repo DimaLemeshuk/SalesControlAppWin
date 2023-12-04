@@ -78,5 +78,8 @@ namespace BusinessLogicLayer.Services.Impl
             productRepository.Update(products);
         }
 
+        public static void PrintToDataGrid(DataGrid dataGrid)
+        { }
+
     }
 }
