@@ -23,8 +23,8 @@ namespace PresentationLayer.Pages
         private void DBGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             var editedItem = e.Row.Item;
-            //DataControl.updateRow(e, editedItem);
-            //ProductControl.PrintToDataGrid(DBGrid);
+            DBGridControl.updateRow(e, editedItem);
+            ProductView.PrintToDataGrid(DBGrid);
 
         }
 

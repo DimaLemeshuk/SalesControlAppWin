@@ -15,6 +15,6 @@ namespace DataAccessLayer.Repositoryes.Interfaces
         void Update(T item);
         void Delete(int id);
 
-        void SaveChange();
+        void SaveChanges();
     }
 }

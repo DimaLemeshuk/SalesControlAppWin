@@ -60,10 +60,11 @@ namespace DataAccessLayer.Repositoryes.Impl
             _context.Entry(item).State = EntityState.Modified;
         }
 
-        public void SaveChange()
+        public void SaveChanges()
         {
             _context.SaveChanges();
         }
+
     }
 }
 

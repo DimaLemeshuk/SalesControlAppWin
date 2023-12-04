@@ -86,7 +86,8 @@ namespace PresentationLayer.Control
                 try
                 {
                     productService.Delete(product.Id);
-                    productService.SaveChange();
+                    productService.SaveChanges();
+                    MessageBox.Show("Дані успішно видалено");
                 }
                 catch (Exception ex)
                 {
@@ -97,50 +98,49 @@ namespace PresentationLayer.Control
         }
 
 
-        //public static void updateRow(DataGridCellEditEndingEventArgs e, System.Object editedItem)
-        //{
-        //    var editedValue = (e.EditingElement as TextBox).Text;// Отримайте значення комірки, яку редагуєте
+        public static void updateRow(DataGridCellEditEndingEventArgs e, System.Object editedItem)
+        {
+            var editedValue = (e.EditingElement as TextBox).Text;// Отримайте значення комірки, яку редагуєте
+            var productService = new ProductService();
 
-        //    using (var context = new StoresDbContext())
-        //    {
-        //        if (editedItem is Product product)
-        //        {
-        //            try
-        //            {
-        //                var curr = context.Products.Find(product.Id);
-        //                Binding binding = (e.Column as DataGridBoundColumn).Binding as Binding;
-        //                string propertyName = binding.Path.Path;//змінене поле   
-        //                PropertyInfo propertyInfo = (curr.GetType()).GetProperty(propertyName);
-        //                propertyInfo.SetValue(curr, ConvertToNumberOrString(editedValue));
-        //                context.SaveChanges();
-        //                MessageBox.Show("Зміни успішно збережено");
+            if (editedItem is ProductDTO product)
+            {
+                try
+                {
+                    var curr = productService.Get(product.Id);
+                    Binding binding = (e.Column as DataGridBoundColumn).Binding as Binding;
+                    string propertyName = binding.Path.Path;//змінене поле   
+                    PropertyInfo propertyInfo = (curr.GetType()).GetProperty(propertyName);
+                    propertyInfo.SetValue(curr, ConvertToNumberOrString(editedValue));
+                    productService.SaveChanges();
+                    MessageBox.Show("Зміни успішно збережено");
 
-        //            }
-        //            catch (Exception ex)
-        //            {
-        //                MessageBox.Show("Сталася помилка при оновленні: " + ex.Message);
-        //            }
-        //        }
-        //    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Сталася помилка при оновленні: " + ex.Message);
+                }
+            }
 
-        //}
 
-        //public static object ConvertToNumberOrString(string input)
-        //{
+        }
 
-        //    if (int.TryParse(input, out int intValue))
-        //    {
-        //        return intValue;
-        //    }
+        public static object ConvertToNumberOrString(string input)
+        {
 
-        //    input = input.Replace('.', ',');
-        //    if (double.TryParse(input, out double doubleValue))
-        //    {
-        //        return doubleValue;
-        //    }
+            if (int.TryParse(input, out int intValue))
+            {
+                return intValue;
+            }
 
-        //    // Якщо конвертація в int не вдалася, повернемо вихідну строку
-        //    return input;
-        //}
+            input = input.Replace('.', ',');
+            if (double.TryParse(input, out double doubleValue))
+            {
+                return doubleValue;
+            }
+
+            // Якщо конвертація в int не вдалася, повернемо вихідну строку
+            return input;
+        }
     }
 }

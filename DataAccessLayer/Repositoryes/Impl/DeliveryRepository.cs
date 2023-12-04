@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositoryes.Impl
 {
-    public class DeliveryRepository : BaseRepository<Delivery>
+    public class DeliveryRepository : BaseRepository<Groupproduct>
     {
         public DeliveryRepository() : base()
         {
