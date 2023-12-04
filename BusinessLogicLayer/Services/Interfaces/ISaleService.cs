@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace BusinessLogicLayer.Services.Interfaces
 {
     internal interface ISaleService
-
     {
     }
 }
