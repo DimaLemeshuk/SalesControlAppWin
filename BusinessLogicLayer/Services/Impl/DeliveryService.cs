@@ -35,6 +35,18 @@ namespace BusinessLogicLayer.Services.Impl
             this.mapper = config.CreateMapper();
         }
 
+        public DeliveryService()
+        {
+            this.deliveryRepository = new DeliveryRepository();
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Delivery, DeliveryDTO>();
+                cfg.CreateMap<DeliveryDTO, Delivery>();
+            });
+
+            this.mapper = config.CreateMapper();
+        }
+
         public IEnumerable<DeliveryDTO> GetAll()
         {
             var deliveries = deliveryRepository.GetAll();
@@ -78,6 +90,11 @@ namespace BusinessLogicLayer.Services.Impl
         public void Delete(int id)
         {
             deliveryRepository.Delete(id);
+        }
+
+        public void SaveChange()
+        {
+            deliveryRepository.SaveChange();
         }
     }
 }

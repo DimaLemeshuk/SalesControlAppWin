@@ -1,4 +1,6 @@
 ﻿
+using PresentationLayer.Control;
+using PresentationLayer.ViewModels;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,7 +16,7 @@ namespace PresentationLayer.Pages
         {
             InitializeComponent();
 
-            //ProductControl.PrintToDataGrid(DBGrid);
+            ProductView.PrintToDataGrid(DBGrid);
 
         }
 
@@ -32,9 +34,8 @@ namespace PresentationLayer.Pages
             {
                 foreach (var selectedItem in DBGrid.SelectedItems)
                 {
-                    //DataControl.deleteRov(DBGrid, selectedItem);
+                    DBGridControl.deleteRov(DBGrid, selectedItem);
                 }
-                //ProductControl.PrintToDataGrid(DBGrid);
 
             }
             else
@@ -45,7 +46,7 @@ namespace PresentationLayer.Pages
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
-            //ProductControl.PrintToDataGrid(DBGrid);
+            ProductView.PrintToDataGrid(DBGrid);
         }
     }
 }

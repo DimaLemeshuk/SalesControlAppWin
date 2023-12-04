@@ -11,7 +11,7 @@ namespace DataAccessLayer.Repositoryes.Impl
 {
     public class DeliveryRepository : BaseRepository<Delivery>
     {
-        public DeliveryRepository(DbContext context) : base(context)
+        public DeliveryRepository() : base()
         {
         }
     }

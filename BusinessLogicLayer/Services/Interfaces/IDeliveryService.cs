@@ -15,5 +15,6 @@ namespace BusinessLogicLayer.Services.Interfaces
         void Create(DeliveryDTO item);
         void Update(DeliveryDTO item);
         void Delete(int id);
+        void SaveChange();
     }
 }

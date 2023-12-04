@@ -1,4 +1,5 @@
-﻿using DataAccessLayer.Repositoryes.Interfaces;
+﻿using DataAccessLayer.Models;
+using DataAccessLayer.Repositoryes.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,13 @@ namespace DataAccessLayer.Repositoryes.Impl
             _context = context;
             _set = context.Set<T>();
         }
+
+        public BaseRepository()
+        {
+            _context = new StoresDbContext();
+            _set = _context.Set<T>();
+        }
+
         public void Create(T item)
         {
             _set.Add(item);
@@ -50,6 +58,11 @@ namespace DataAccessLayer.Repositoryes.Impl
         public void Update(T item)
         {
             _context.Entry(item).State = EntityState.Modified;
+        }
+
+        public void SaveChange()
+        {
+            _context.SaveChanges();
         }
     }
 }

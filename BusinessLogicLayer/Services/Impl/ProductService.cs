@@ -33,6 +33,20 @@ namespace BusinessLogicLayer.Services.Impl
             this.mapper = config.CreateMapper();
         }
 
+        public ProductService()
+        {
+
+            this.productRepository = new ProductRepository();
+
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Product, ProductDTO>();
+                cfg.CreateMap<ProductDTO, Product>();
+            });
+
+            this.mapper = config.CreateMapper();
+        }
+
         public void Create(ProductDTO item)
         {
             var product = mapper.Map<ProductDTO, Product>(item);
@@ -78,8 +92,13 @@ namespace BusinessLogicLayer.Services.Impl
             productRepository.Update(products);
         }
 
-        public static void PrintToDataGrid(DataGrid dataGrid)
-        { }
+        public void SaveChange()
+        {
+            productRepository.SaveChange();
+        }
+
+        //public static void PrintToDataGrid(DataGrid dataGrid)
+        //{ }
 
     }
 }

@@ -10,7 +10,7 @@ namespace DataAccessLayer.Repositoryes.Impl
 {
     public class ProductRepository : BaseRepository<Product>
     {
-        public ProductRepository(DbContext context) : base(context)
+        public ProductRepository() : base()
         {
         }
     }
