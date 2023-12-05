@@ -15,7 +15,7 @@ public partial class StoresDbContext : DbContext
     {
     }
 
-    public virtual DbSet<Groupproduct> Deliveries { get; set; }
+    public virtual DbSet<Delivery> Deliveries { get; set; }
 
     public virtual DbSet<Groupproduct> Groupproducts { get; set; }
 

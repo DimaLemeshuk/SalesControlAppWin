@@ -24,7 +24,7 @@ namespace PresentationLayer.Pages
         {
             var editedItem = e.Row.Item;
             DBGridControl.updateRow(e, editedItem);
-            ProductView.PrintToDataGrid(DBGrid);
+            //ProductView.PrintToDataGrid(DBGrid);
 
         }
 

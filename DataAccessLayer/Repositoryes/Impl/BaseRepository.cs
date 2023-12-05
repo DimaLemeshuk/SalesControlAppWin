@@ -1,9 +1,11 @@
 ﻿using DataAccessLayer.Models;
 using DataAccessLayer.Repositoryes.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -58,6 +60,15 @@ namespace DataAccessLayer.Repositoryes.Impl
         public void Update(T item)
         {
             _context.Entry(item).State = EntityState.Modified;
+        }
+
+        public void Update(T item, string propertyName, object editedValue)
+        {
+            PropertyInfo propertyInfo = (item.GetType()).GetProperty(propertyName);
+            T currItem = _set.FirstOrDefault(p => p == item);
+            propertyInfo.SetValue(currItem, editedValue);
+            //_set.Find(item);
+            _context.Entry(currItem).State = EntityState.Modified;
         }
 
         public void SaveChanges()

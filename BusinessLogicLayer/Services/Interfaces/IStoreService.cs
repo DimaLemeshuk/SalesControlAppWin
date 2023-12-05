@@ -14,6 +14,7 @@ namespace BusinessLogicLayer.Services.Interfaces
         IEnumerable<StoreDTO> Find(Func<StoreDTO, Boolean> predicate);
         void Create(StoreDTO item);
         void Update(StoreDTO item);
+        public void Update(StoreDTO item, string propertyName, object editedValue);
         void Delete(int id);
         void SaveChanges();
     }

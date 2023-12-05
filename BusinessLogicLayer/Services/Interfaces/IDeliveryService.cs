@@ -9,11 +9,12 @@ namespace BusinessLogicLayer.Services.Interfaces
 {
     public interface IDeliveryService
     {
-        IEnumerable<GroupproductDTO> GetAll();
-        GroupproductDTO Get(int id);
-        IEnumerable<GroupproductDTO> Find(Func<GroupproductDTO, Boolean> predicate);
-        void Create(GroupproductDTO item);
-        void Update(GroupproductDTO item);
+        IEnumerable<DeliveryDTO> GetAll();
+        DeliveryDTO Get(int id);
+        IEnumerable<DeliveryDTO> Find(Func<DeliveryDTO, Boolean> predicate);
+        void Create(DeliveryDTO item);
+        void Update(DeliveryDTO item);
+        public void Update(DeliveryDTO item, string propertyName, object editedValue);
         void Delete(int id);
         void SaveChanges();
     }

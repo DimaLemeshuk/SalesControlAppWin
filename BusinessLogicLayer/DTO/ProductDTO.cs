@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAccessLayer.Models;
+using System;
 using System.Collections.Generic;
 
 namespace BusinessLogicLayer.DTO;
@@ -17,5 +18,7 @@ public class ProductDTO
     public int SuplierId { get; set; }
 
     public int GroupProductsId { get; set; }
+    public SupplierDTO SupplierDTO { get; set; } = null!;
+    public GroupproductDTO GroupproductDTO { get; set; } = null!;
 
 }

@@ -110,8 +110,7 @@ namespace PresentationLayer.Control
                     var curr = productService.Get(product.Id);
                     Binding binding = (e.Column as DataGridBoundColumn).Binding as Binding;
                     string propertyName = binding.Path.Path;//змінене поле   
-                    PropertyInfo propertyInfo = (curr.GetType()).GetProperty(propertyName);
-                    propertyInfo.SetValue(curr, ConvertToNumberOrString(editedValue));
+                    productService.Update(curr, propertyName, ConvertToNumberOrString(editedValue));
                     productService.SaveChanges();
                     MessageBox.Show("Зміни успішно збережено");
 

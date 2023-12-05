@@ -6,6 +6,7 @@ using DataAccessLayer.Repositoryes.Impl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,6 +29,8 @@ namespace BusinessLogicLayer.Services.Impl
             {
                 cfg.CreateMap<Product, ProductDTO>();
                 cfg.CreateMap<ProductDTO, Product>();
+                cfg.CreateMap<Supplier, SupplierDTO>();
+                cfg.CreateMap<Groupproduct, GroupproductDTO>();
             });
 
             this.mapper = config.CreateMapper();
@@ -42,6 +45,8 @@ namespace BusinessLogicLayer.Services.Impl
             {
                 cfg.CreateMap<Product, ProductDTO>();
                 cfg.CreateMap<ProductDTO, Product>();
+                cfg.CreateMap<Supplier, SupplierDTO>();
+                cfg.CreateMap<Groupproduct, GroupproductDTO>();
             });
 
             this.mapper = config.CreateMapper();
@@ -77,19 +82,35 @@ namespace BusinessLogicLayer.Services.Impl
         {
             var products = productRepository.GetAll();
 
-            var mapper = new MapperConfiguration(cfg => cfg
-                .CreateMap<Product, ProductDTO>())
-                    .CreateMapper();
+            var mapper = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Product, ProductDTO>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.NameProducts, opt => opt.MapFrom(src => src.NameProducts))
+                .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Price))
+                .ForMember(dest => dest.SupplierDTO, opt => opt.MapFrom(src => (new SupplierService()).Get(src.SuplierId)))
+                .ForMember(dest => dest.GroupproductDTO, opt => opt.MapFrom(src => (new GroupproductService()).Get(src.GroupProductsId)));
+            })
+            .CreateMapper();
+
 
             var productDtos = mapper.Map<IEnumerable<Product>, List<ProductDTO>>(products);
+            //var productDtos = mapper.Map<IEnumerable<Product>>(products).Cast<ProductDTO>();
 
             return productDtos;
+
         }
 
         public void Update(ProductDTO item)
         {
             var products = mapper.Map<ProductDTO, Product>(item);
             productRepository.Update(products);
+        }
+
+        public void Update(ProductDTO item, string propertyName, object editedValue)
+        {
+            var products = mapper.Map<ProductDTO, Product>(item);
+            productRepository.Update(products, propertyName, editedValue);
         }
 
         public void SaveChanges()

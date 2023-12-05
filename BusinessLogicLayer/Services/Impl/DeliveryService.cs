@@ -21,8 +21,8 @@ namespace BusinessLogicLayer.Services.Impl
 
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<Groupproduct, GroupproductDTO>();
-                cfg.CreateMap<GroupproductDTO, Groupproduct>();
+                cfg.CreateMap<Delivery, DeliveryDTO>();
+                cfg.CreateMap<DeliveryDTO, Delivery>();
             });
 
             this.mapper = config.CreateMapper();
@@ -33,51 +33,57 @@ namespace BusinessLogicLayer.Services.Impl
             this.deliveryRepository = new DeliveryRepository();
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<Groupproduct, GroupproductDTO>();
-                cfg.CreateMap<GroupproductDTO, Groupproduct>();
+                cfg.CreateMap<Delivery, DeliveryDTO>();
+                cfg.CreateMap<DeliveryDTO, Delivery>();
             });
 
             this.mapper = config.CreateMapper();
         }
 
-        public IEnumerable<GroupproductDTO> GetAll()
+        public IEnumerable<DeliveryDTO> GetAll()
         {
-            var deliveries = deliveryRepository.GetAll();
+            var deliv = deliveryRepository.GetAll();
 
             var mapper = new MapperConfiguration(cfg => cfg
-                .CreateMap<Groupproduct, GroupproductDTO>())
+                .CreateMap<Delivery, DeliveryDTO>())
                     .CreateMapper();
 
-            var deliveryDtos = mapper.Map<IEnumerable<Groupproduct>, List<GroupproductDTO>>(deliveries);
+            var deliveryDtos = mapper.Map<IEnumerable<Delivery>, List<DeliveryDTO>>(deliv);
 
             return deliveryDtos;
         }
 
-        public GroupproductDTO Get(int id)
+        public DeliveryDTO Get(int id)
         {
             var delivery = deliveryRepository.Get(id);
-            var deliveryDto = mapper.Map<Groupproduct, GroupproductDTO>(delivery);
+            var deliveryDto = mapper.Map<Delivery, DeliveryDTO>(delivery);
             return deliveryDto;
         }
 
-        public IEnumerable<GroupproductDTO> Find(Func<GroupproductDTO, bool> predicate)
+        public IEnumerable<DeliveryDTO> Find(Func<DeliveryDTO, bool> predicate)
         {
             var allDeliveries = deliveryRepository.GetAll();
-            var filteredDeliveries = allDeliveries.Select(delivery => mapper.Map<Groupproduct, GroupproductDTO>(delivery))
+            var filteredDeliveries = allDeliveries.Select(delivery => mapper.Map<Delivery, DeliveryDTO>(delivery))
                                                  .Where(predicate);
             return filteredDeliveries;
         }
 
-        public void Create(GroupproductDTO item)
+        public void Create(DeliveryDTO item)
         {
-            var delivery = mapper.Map<GroupproductDTO, Groupproduct>(item);
+            var delivery = mapper.Map<DeliveryDTO, Delivery>(item);
             deliveryRepository.Create(delivery);
         }
 
-        public void Update(GroupproductDTO item)
+        public void Update(DeliveryDTO item)
         {
-            var delivery = mapper.Map<GroupproductDTO, Groupproduct>(item);
+            var delivery = mapper.Map<DeliveryDTO, Delivery>(item);
             deliveryRepository.Update(delivery);
+        }
+
+        public void Update(DeliveryDTO item, string propertyName, object editedValue)
+        {
+            var supplier = mapper.Map<DeliveryDTO, Delivery>(item);
+            deliveryRepository.Update(supplier, propertyName, editedValue);
         }
 
         public void Delete(int id)

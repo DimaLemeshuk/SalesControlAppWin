@@ -85,6 +85,12 @@ namespace BusinessLogicLayer.Services.Impl
             storeRepository.Update(store);
         }
 
+        public void Update(StoreDTO item, string propertyName, object editedValue)
+        {
+            var store = mapper.Map<StoreDTO, Store>(item);
+            storeRepository.Update(store, propertyName, editedValue);
+        }
+
         public void Delete(int id)
         {
             storeRepository.Delete(id);
