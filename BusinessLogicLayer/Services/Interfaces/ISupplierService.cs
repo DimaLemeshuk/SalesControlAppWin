@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessLogicLayer.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,12 @@ namespace BusinessLogicLayer.Services.Interfaces
 {
     internal interface ISupplierService
     {
+        IEnumerable<SupplierDTO> GetAll();
+        SupplierDTO Get(int id);
+        IEnumerable<SupplierDTO> Find(Func<SupplierDTO, Boolean> predicate);
+        void Create(SupplierDTO item);
+        void Update(SupplierDTO item);
+        void Delete(int id);
+        void SaveChanges();
     }
 }
