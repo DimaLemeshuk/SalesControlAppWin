@@ -9,10 +9,10 @@ namespace BusinessLogicLayer.Services.Impl
     public class GroupproductService : IGroupproductService
     {
 
-        private readonly GroupproductRepository groupproductRepository;
+        private readonly SaleRepository groupproductRepository;
         private readonly IMapper mapper;
 
-        public GroupproductService(GroupproductRepository groupproductRepository)
+        public GroupproductService(SaleRepository groupproductRepository)
         {
             if (groupproductRepository == null)
             {
@@ -31,7 +31,7 @@ namespace BusinessLogicLayer.Services.Impl
 
         public GroupproductService()
         {
-            this.groupproductRepository = new GroupproductRepository();
+            this.groupproductRepository = new SaleRepository();
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Groupproduct, GroupproductDTO>();

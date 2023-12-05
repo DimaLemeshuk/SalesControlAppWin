@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositoryes.Impl
 {
-    public class GroupproductRepository : BaseRepository<Groupproduct>
+    public class SaleRepository : BaseRepository<Groupproduct>
     {
-        public GroupproductRepository() : base()
+        public SaleRepository() : base()
         {
         }
     }

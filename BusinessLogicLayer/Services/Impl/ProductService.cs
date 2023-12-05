@@ -97,8 +97,5 @@ namespace BusinessLogicLayer.Services.Impl
             productRepository.SaveChanges();
         }
 
-        //public static void PrintToDataGrid(DataGrid dataGrid)
-        //{ }
-
     }
 }
