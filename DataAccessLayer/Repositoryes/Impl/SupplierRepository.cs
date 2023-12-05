@@ -11,7 +11,7 @@ namespace DataAccessLayer.Repositoryes.Impl
 {
     public class SupplierRepository : BaseRepository<Supplier> 
     {
-        public SupplierRepository(DbContext context) : base(context)
+        public SupplierRepository() : base()
         {
         }
     }

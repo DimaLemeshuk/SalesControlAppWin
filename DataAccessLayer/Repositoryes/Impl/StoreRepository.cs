@@ -11,7 +11,7 @@ namespace DataAccessLayer.Repositoryes.Impl
 {
     public class StoreRepository : BaseRepository<Store>
     {
-        public StoreRepository(DbContext context) : base(context)
+        public StoreRepository() : base()
         {
         }
     }
