@@ -4,6 +4,7 @@ using PresentationLayer.ViewModels;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace PresentationLayer.Pages
 {
@@ -47,6 +48,12 @@ namespace PresentationLayer.Pages
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
             ProductView.PrintToDataGrid(DBGrid);
+        }
+
+        private void FindTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            DBGridControl.findInDataGrid(FindTextBox.Text, DBGrid);
+
         }
     }
 }

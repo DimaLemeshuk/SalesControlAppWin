@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace PresentationLayer.Control
 {
@@ -120,8 +121,47 @@ namespace PresentationLayer.Control
                     MessageBox.Show("Сталася помилка при оновленні: " + ex.Message);
                 }
             }
+        }
 
+        public static void findInDataGrid (string FindText, DataGrid DBGrid)
+        {
+            string searchText = FindText.ToLower();
+            if (!FindText.Equals(""))
+            {
+                foreach (var item in DBGrid.Items)
+                {
+                    DataGridRow row = (DataGridRow)DBGrid.ItemContainerGenerator.ContainerFromItem(item);
+                    if (row != null)
+                    {
+                        // Отримуємо значення властивостей об'єкта
+                        var propertyValues = item.GetType().GetProperties()
+                            .Select(property => property.GetValue(item)?.ToString() ?? "")
+                            .ToList();
 
+                        // Перевіряємо, чи будь-яке значення властивості містить текст пошуку
+                        if (propertyValues.Any(value => value.ToLower().Contains(searchText)))
+                        {
+                            row.Background = Brushes.LightGreen;
+                        }
+                        else
+                        {
+                            row.Background = Brushes.White;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                // Зробити всі поля білими
+                foreach (var item in DBGrid.Items)
+                {
+                    DataGridRow row = (DataGridRow)DBGrid.ItemContainerGenerator.ContainerFromItem(item);
+                    if (row != null)
+                    {
+                        row.Background = Brushes.White;
+                    }
+                }
+            }
         }
 
         public static object ConvertToNumberOrString(string input)
