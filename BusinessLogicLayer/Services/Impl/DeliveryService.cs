@@ -44,9 +44,12 @@ namespace BusinessLogicLayer.Services.Impl
         {
             var deliv = deliveryRepository.GetAll();
 
-            var mapper = new MapperConfiguration(cfg => cfg
-                .CreateMap<Delivery, DeliveryDTO>())
-                    .CreateMapper();
+            var mapper = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Delivery, DeliveryDTO>()
+                .ForMember(dest => dest.ProductDTO, opt => opt.MapFrom(src => (new ProductService()).Get(src.ProductId)));
+            })
+            .CreateMapper();
 
             var deliveryDtos = mapper.Map<IEnumerable<Delivery>, List<DeliveryDTO>>(deliv);
 

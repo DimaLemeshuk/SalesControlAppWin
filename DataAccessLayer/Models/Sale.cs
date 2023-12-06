@@ -17,6 +17,8 @@ public partial class Sale
 
     public double SalesAmount { get; set; }
 
+    public string Status { get; set; }
+
     public virtual Product Product { get; set; } = null!;
 
     public virtual Store Store { get; set; } = null!;

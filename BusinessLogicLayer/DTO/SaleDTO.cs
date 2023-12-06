@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAccessLayer.Models;
+using System;
 using System.Collections.Generic;
 
 namespace BusinessLogicLayer.DTO;
@@ -15,5 +16,11 @@ public class SaleDTO
     public int Quantity { get; set; }
 
     public double SalesAmount { get; set; }
+
+    public string Status { get; set; }
+
+    public virtual ProductDTO ProductDTO { get; set; } = null!;
+
+    public virtual StoreDTO StoreDTO { get; set; } = null!;
 
 }

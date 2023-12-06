@@ -1,6 +1,7 @@
 ﻿
 using PresentationLayer.Control;
 using PresentationLayer.ViewModels;
+using PresentationLayer.ViewModels.Control;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,7 +18,8 @@ namespace PresentationLayer.Pages
         {
             InitializeComponent();
 
-            ProductView.PrintToDataGrid(DBGrid);
+            DeliveryView.PrintToDataGrid(DBGrid);
+            //ProductView.PrintToDataGrid(DBGrid);
 
         }
 

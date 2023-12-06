@@ -15,5 +15,9 @@ public partial class Delivery
 
     public double DeliveryCost { get; set; }
 
+    public string Status { get; set; }
+
+    public DateTime? ScheduledDateTime { get; set; }
+
     public virtual Product Product { get; set; } = null!;
 }

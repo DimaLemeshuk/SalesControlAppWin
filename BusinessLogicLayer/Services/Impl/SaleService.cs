@@ -29,6 +29,8 @@ namespace BusinessLogicLayer.Services.Impl
             {
                 cfg.CreateMap<Sale, SaleDTO>();
                 cfg.CreateMap<SaleDTO, Sale>();
+                cfg.CreateMap<Store, StoreDTO>();
+                cfg.CreateMap<Product, ProductDTO>();
             });
 
             this.mapper = config.CreateMapper();
@@ -50,9 +52,13 @@ namespace BusinessLogicLayer.Services.Impl
         {
             var sale = salesRepository.GetAll();
 
-            var mapper = new MapperConfiguration(cfg => cfg
-                .CreateMap<Sale, SaleDTO>())
-                    .CreateMapper();
+            var mapper = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Sale, SaleDTO>()
+                .ForMember(dest => dest.ProductDTO, opt => opt.MapFrom(src => (new ProductService()).Get(src.ProductId)))
+                .ForMember(dest => dest.StoreDTO, opt => opt.MapFrom(src => (new StoreService()).Get(src.StoreId)));
+            })
+            .CreateMapper();
 
             var Dtos = mapper.Map<IEnumerable<Sale>, List<SaleDTO>>(sale);
 

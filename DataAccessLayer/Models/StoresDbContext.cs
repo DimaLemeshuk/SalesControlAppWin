@@ -49,6 +49,13 @@ public partial class StoresDbContext : DbContext
             entity.Property(e => e.ProductId).HasColumnName("product_id");
             entity.Property(e => e.Quantity).HasColumnName("quantity");
 
+            entity.Property(e => e.Status)
+                .HasColumnType("enum('Заплановано', 'Доставлено', 'Відмінено')")
+                .HasColumnName("status");
+            entity.Property(e => e.ScheduledDateTime)
+                .HasColumnType("datetime")
+                .HasColumnName("scheduled_dateTime");
+
             entity.HasOne(d => d.Product).WithMany(p => p.Deliveries)
                 .HasForeignKey(d => d.ProductId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -121,6 +128,10 @@ public partial class StoresDbContext : DbContext
             entity.Property(e => e.Quantity).HasColumnName("quantity");
             entity.Property(e => e.SalesAmount).HasColumnName("salesAmount");
             entity.Property(e => e.StoreId).HasColumnName("store_id");
+
+            entity.Property(e => e.Status)
+                .HasColumnType("enum('Обробляється','Завершено', 'Доставляється', 'Повернено')")
+                .HasColumnName("status");
 
             entity.HasOne(d => d.Product).WithMany(p => p.Sales)
                 .HasForeignKey(d => d.ProductId)
