@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.DTO
 {
-    internal class CustomerDTO
+    public class CustomerDTO
     {
+        public int Id { get; set; }
+
+        public string Name { get; set; } = null!;
+
+        public string Surname { get; set; } = null!;
+
+        public string? Fathersname { get; set; }
+
+        public string Phonenumber { get; set; } = null!;
     }
 }

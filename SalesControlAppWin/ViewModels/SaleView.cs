@@ -23,10 +23,12 @@ namespace PresentationLayer.ViewModels
             DBGridControl.AddColumn(dataGrid, "id", "Id", true);
             DBGridControl.AddColumn(dataGrid, "Товар", "ProductDTO.NameProducts");
             DBGridControl.AddColumn(dataGrid, "Назва магазину", "StoreDTO.NameStores");
-            DBGridControl.AddColumn(dataGrid, "Дата здійснення\nзамовлення", "DateTime");
+            DBGridControl.AddColumn(dataGrid, "Дата та час здійснення\nзамовлення", "DateTime");
             DBGridControl.AddColumn(dataGrid, "Кількість", "Quantity");
             DBGridControl.AddColumn(dataGrid, "Загальна вартість", "SalesAmount");
             DBGridControl.AddColumn(dataGrid, "Статус", "Status");
+            DBGridControl.AddColumn(dataGrid, "Ім'я замовника", "CustomersDTO.Name");
+            DBGridControl.AddColumn(dataGrid, "Прізвище замовника", "CustomersDTO.Surname");
             //var d = new SupplierService().Get(1).NameSuppliers;
 
         }

@@ -19,8 +19,11 @@ public class SaleDTO
 
     public string Status { get; set; }
 
+    public int CustomersId { get; set; }
+
     public virtual ProductDTO ProductDTO { get; set; } = null!;
 
     public virtual StoreDTO StoreDTO { get; set; } = null!;
+    public virtual CustomerDTO CustomersDTO { get; set; } = null!;
 
 }

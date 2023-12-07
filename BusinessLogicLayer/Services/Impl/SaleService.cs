@@ -56,7 +56,8 @@ namespace BusinessLogicLayer.Services.Impl
             {
                 cfg.CreateMap<Sale, SaleDTO>()
                 .ForMember(dest => dest.ProductDTO, opt => opt.MapFrom(src => (new ProductService()).Get(src.ProductId)))
-                .ForMember(dest => dest.StoreDTO, opt => opt.MapFrom(src => (new StoreService()).Get(src.StoreId)));
+                .ForMember(dest => dest.StoreDTO, opt => opt.MapFrom(src => (new StoreService()).Get(src.StoreId)))
+                .ForMember(dest => dest.CustomersDTO, opt => opt.MapFrom(src => (new CustomerService()).Get(src.CustomersId)));
             })
             .CreateMapper();
 

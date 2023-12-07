@@ -18,7 +18,9 @@ namespace PresentationLayer.Pages
         {
             InitializeComponent();
 
-            DeliveryView.PrintToDataGrid(DBGrid);
+            SupplierView.PrintToDataGrid(DBGrid);
+            //SaleView.PrintToDataGrid(DBGrid);
+            //DeliveryView.PrintToDataGrid(DBGrid);
             //ProductView.PrintToDataGrid(DBGrid);
 
         }
