@@ -107,10 +107,10 @@ namespace BusinessLogicLayer.Services.Impl
             productRepository.Update(products);
         }
 
-        public void Update(ProductDTO item, string propertyName, object editedValue)
+        public bool Update(ProductDTO item, string propertyName, object editedValue)
         {
             var products = mapper.Map<ProductDTO, Product>(item);
-            productRepository.Update(products, propertyName, editedValue);
+            return productRepository.Update(products, propertyName, editedValue);
         }
 
         public void SaveChanges()

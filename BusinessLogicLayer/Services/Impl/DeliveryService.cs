@@ -83,10 +83,10 @@ namespace BusinessLogicLayer.Services.Impl
             deliveryRepository.Update(delivery);
         }
 
-        public void Update(DeliveryDTO item, string propertyName, object editedValue)
+        public bool Update(DeliveryDTO item, string propertyName, object editedValue)
         {
             var supplier = mapper.Map<DeliveryDTO, Delivery>(item);
-            deliveryRepository.Update(supplier, propertyName, editedValue);
+            return deliveryRepository.Update(supplier, propertyName, editedValue);
         }
 
         public void Delete(int id)

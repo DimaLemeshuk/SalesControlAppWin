@@ -14,7 +14,7 @@ namespace BusinessLogicLayer.Services.Interfaces
         IEnumerable<DeliveryDTO> Find(Func<DeliveryDTO, Boolean> predicate);
         void Create(DeliveryDTO item);
         void Update(DeliveryDTO item);
-        public void Update(DeliveryDTO item, string propertyName, object editedValue);
+        bool Update(DeliveryDTO item, string propertyName, object editedValue);
         void Delete(int id);
         void SaveChanges();
     }

@@ -14,7 +14,7 @@ namespace BusinessLogicLayer.Services.Interfaces
         IEnumerable<GroupproductDTO> Find(Func<GroupproductDTO, Boolean> predicate);
         void Create(GroupproductDTO item);
         void Update(GroupproductDTO item);
-        public void Update(GroupproductDTO item, string propertyName, object editedValue);
+        bool Update(GroupproductDTO item, string propertyName, object editedValue);
         void Delete(int id);
         void SaveChanges();
     }

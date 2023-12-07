@@ -14,20 +14,17 @@ namespace PresentationLayer.ViewModels.Control
     {
         public static void PrintToDataGrid(DataGrid dataGrid)
         {
-            //var sw = new SaleService().GetAll().ToList();
             DBGridControl.DelOllColumn(dataGrid);
             dataGrid.ItemsSource = new DeliveryService().GetAll()
                 .ToList();
 
             DBGridControl.AddColumn(dataGrid, "id", "Id", true);
-            DBGridControl.AddColumn(dataGrid, "Товар", "ProductDTO.NameProducts");
+            DBGridControl.AddColumn(dataGrid, "Товар", "ProductDTO.NameProducts", true);
             DBGridControl.AddColumn(dataGrid, "Дата доставки", "DateTime");
             DBGridControl.AddColumn(dataGrid, "Кількість", "Quantity");
             DBGridControl.AddColumn(dataGrid, "Загальна вартість", "DeliveryCost");
             DBGridControl.AddColumn(dataGrid, "Статус", "Status");
             DBGridControl.AddColumn(dataGrid, "Планована дата\nдоставки", "DateTime");
-            //var d = new SupplierService().Get(1).NameSuppliers;
-
         }
     }
 }

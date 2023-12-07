@@ -62,13 +62,21 @@ namespace DataAccessLayer.Repositoryes.Impl
             _context.Entry(item).State = EntityState.Modified;
         }
 
-        public void Update(T item, string propertyName, object editedValue)
+        public bool Update(T item, string propertyName, object editedValue)
         {
-            PropertyInfo propertyInfo = (item.GetType()).GetProperty(propertyName);
-            T currItem = _set.FirstOrDefault(p => p == item);
-            propertyInfo.SetValue(currItem, editedValue);
-            //_set.Find(item);
-            _context.Entry(currItem).State = EntityState.Modified;
+            try
+            {
+                PropertyInfo propertyInfo = (item.GetType()).GetProperty(propertyName);
+                T currItem = _set.FirstOrDefault(p => p == item);
+                propertyInfo.SetValue(currItem, editedValue);
+                //_set.Find(item);
+                _context.Entry(currItem).State = EntityState.Modified;
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public void SaveChanges()

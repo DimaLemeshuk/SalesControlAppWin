@@ -13,7 +13,6 @@ namespace PresentationLayer.ViewModels
     {
         public static void PrintToDataGrid(DataGrid dataGrid)
         {
-            var sw = new ProductService().GetAll().ToList();
             DBGridControl.DelOllColumn(dataGrid);
             dataGrid.ItemsSource = new ProductService().GetAll()
                 .ToList();
@@ -23,9 +22,8 @@ namespace PresentationLayer.ViewModels
             DBGridControl.AddColumn(dataGrid, "Опис", "Description");
             DBGridControl.AddColumn(dataGrid, "Ціна", "Price");
             DBGridControl.AddColumn(dataGrid, "Доступна\nкількість", "AvailableQuantity");
-            DBGridControl.AddColumn(dataGrid, "Постачальник", "SupplierDTO.NameSuppliers");
-            DBGridControl.AddColumn(dataGrid, "Категорія", "GroupproductDTO.NameGroupproducts");
-            //var d = new SupplierService().Get(1).NameSuppliers;
+            DBGridControl.AddColumn(dataGrid, "Постачальник", "SupplierDTO.NameSuppliers", true);
+            DBGridControl.AddColumn(dataGrid, "Категорія", "GroupproductDTO.NameGroupproducts", true);
 
         }
     }

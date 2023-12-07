@@ -93,10 +93,10 @@ namespace BusinessLogicLayer.Services.Impl
             salesRepository.Update(sale);
         }
 
-        public void Update(SaleDTO item, string propertyName, object editedValue)
+        public bool Update(SaleDTO item, string propertyName, object editedValue)
         {
             var sale = mapper.Map<SaleDTO, Sale>(item);
-            salesRepository.Update(sale, propertyName, editedValue);
+            return salesRepository.Update(sale, propertyName, editedValue);
         }
 
         public void Delete(int id)

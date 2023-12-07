@@ -80,46 +80,145 @@ namespace PresentationLayer.Control
 
         public static void deleteRov(DataGrid DBGrid, System.Object selectedItem)
         {
-            var productService = new ProductService();
-
-            if (selectedItem is ProductDTO product)
+            try
             {
-                try
+                if (selectedItem is ProductDTO product)
                 {
+                    var productService = new ProductService();
                     productService.Delete(product.Id);
                     productService.SaveChanges();
                     MessageBox.Show("Дані успішно видалено");
                 }
-                catch (Exception ex)
+                else if (selectedItem is CustomerDTO item)
                 {
-                    MessageBox.Show("Сталася помилка при видаленні Product : " + ex.Message);
+                    var Service = new CustomerService();
+                    Service.Delete(item.Id);
+                    Service.SaveChanges();
+                    MessageBox.Show("Дані успішно видалено");
                 }
-
+                else if (selectedItem is DeliveryDTO delivery)
+                {
+                    var Service = new DeliveryService();
+                    Service.Delete(delivery.Id);
+                    Service.SaveChanges();
+                    MessageBox.Show("Дані успішно видалено");
+                }
+                else if (selectedItem is GroupproductDTO groupproduct)
+                {
+                    var Service = new GroupproductService();
+                    Service.Delete(groupproduct.Id);
+                    Service.SaveChanges();
+                    MessageBox.Show("Дані успішно видалено");
+                }
+                else if (selectedItem is SaleDTO sale)
+                {
+                    var Service = new SaleService();
+                    Service.Delete(sale.Id);
+                    Service.SaveChanges();
+                    MessageBox.Show("Дані успішно видалено");
+                }
+                else if (selectedItem is StoreDTO store)
+                {
+                    var Service = new StoreService();
+                    Service.Delete(store.Id);
+                    Service.SaveChanges();
+                    MessageBox.Show("Дані успішно видалено");
+                }
+                else if (selectedItem is SupplierDTO supplier)
+                {
+                    var Service = new SupplierService();
+                    Service.Delete(supplier.Id);
+                    Service.SaveChanges();
+                    MessageBox.Show("Дані успішно видалено");
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Сталася помилка при видаленні : " + ex.Message);
+            }         
         }
 
 
         public static void updateRow(DataGridCellEditEndingEventArgs e, System.Object editedItem)
         {
             var editedValue = (e.EditingElement as TextBox).Text;// Отримайте значення комірки, яку редагуєте
-            var productService = new ProductService();
 
-            if (editedItem is ProductDTO product)
+            try
             {
-                try
+                if (editedItem is ProductDTO product)
                 {
+                    var productService = new ProductService();
                     var curr = productService.Get(product.Id);
                     Binding binding = (e.Column as DataGridBoundColumn).Binding as Binding;
                     string propertyName = binding.Path.Path;//змінене поле   
                     productService.Update(curr, propertyName, ConvertToNumberOrString(editedValue));
                     productService.SaveChanges();
                     MessageBox.Show("Зміни успішно збережено");
-
                 }
-                catch (Exception ex)
+                else if (editedItem is CustomerDTO customer)
                 {
-                    MessageBox.Show("Сталася помилка при оновленні: " + ex.Message);
+                    var Service = new CustomerService();
+                    var curr = Service.Get(customer.Id);
+                    Binding binding = (e.Column as DataGridBoundColumn).Binding as Binding;
+                    string propertyName = binding.Path.Path;//змінене поле   
+                    Service.Update(curr, propertyName, ConvertToNumberOrString(editedValue));
+                    Service.SaveChanges();
+                    MessageBox.Show("Зміни успішно збережено");
                 }
+                else if (editedItem is DeliveryDTO delivery)
+                {
+                    var Service = new DeliveryService();
+                    var curr = Service.Get(delivery.Id);
+                    Binding binding = (e.Column as DataGridBoundColumn).Binding as Binding;
+                    string propertyName = binding.Path.Path;//змінене поле   
+                    Service.Update(curr, propertyName, ConvertToNumberOrString(editedValue));
+                    Service.SaveChanges();
+                    MessageBox.Show("Зміни успішно збережено");
+                }
+                else if (editedItem is GroupproductDTO groupproduct)
+                {
+                    var Service = new GroupproductService();
+                    var curr = Service.Get(groupproduct.Id);
+                    Binding binding = (e.Column as DataGridBoundColumn).Binding as Binding;
+                    string propertyName = binding.Path.Path;//змінене поле   
+                    Service.Update(curr, propertyName, ConvertToNumberOrString(editedValue));
+                    Service.SaveChanges();
+                    MessageBox.Show("Зміни успішно збережено");
+                }
+                else if (editedItem is SaleDTO sale)
+                {
+                    var Service = new SaleService();
+                    var curr = Service.Get(sale.Id);
+                    Binding binding = (e.Column as DataGridBoundColumn).Binding as Binding;
+                    string propertyName = binding.Path.Path;//змінене поле   
+                    Service.Update(curr, propertyName, ConvertToNumberOrString(editedValue));
+                    Service.SaveChanges();
+                    MessageBox.Show("Зміни успішно збережено");
+                }
+                else if (editedItem is StoreDTO store)
+                {
+                    var Service = new StoreService();
+                    var curr = Service.Get(store.Id);
+                    Binding binding = (e.Column as DataGridBoundColumn).Binding as Binding;
+                    string propertyName = binding.Path.Path;//змінене поле   
+                    Service.Update(curr, propertyName, ConvertToNumberOrString(editedValue));
+                    Service.SaveChanges();
+                    MessageBox.Show("Зміни успішно збережено");
+                }
+                else if (editedItem is SupplierDTO supplier)
+                {
+                    var Service = new SupplierService();
+                    var curr = Service.Get(supplier.Id);
+                    Binding binding = (e.Column as DataGridBoundColumn).Binding as Binding;
+                    string propertyName = binding.Path.Path;//змінене поле   
+                    Service.Update(curr, propertyName, ConvertToNumberOrString(editedValue));
+                    Service.SaveChanges();
+                    MessageBox.Show("Зміни успішно збережено");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Сталася помилка при видаленні : " + ex.Message);
             }
         }
 

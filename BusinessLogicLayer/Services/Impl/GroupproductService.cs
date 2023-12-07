@@ -81,10 +81,10 @@ namespace BusinessLogicLayer.Services.Impl
             groupproductRepository.Update(groupproduct);
         }
 
-        public void Update(GroupproductDTO item, string propertyName, object editedValue)
+        public bool Update(GroupproductDTO item, string propertyName, object editedValue)
         {
             var groupproduct = mapper.Map<GroupproductDTO, Groupproduct>(item);
-            groupproductRepository.Update(groupproduct, propertyName, editedValue);
+            return groupproductRepository.Update(groupproduct, propertyName, editedValue);
         }
 
         public void Delete(int id)

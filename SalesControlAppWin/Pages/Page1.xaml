@@ -30,7 +30,6 @@
             <Setter Property="Margin" Value="0 0" />
             <Setter Property="Padding" Value="5" />
             <Setter Property="TextWrapping" Value="Wrap"/>
-            <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
@@ -44,13 +43,12 @@
             <Setter Property="Foreground" Value="#26292f" />
             <Setter Property="FontSize" Value="14" />
             <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="Margin" Value="30 0" />
+            <Setter Property="Margin" Value="0 0 40 0" />
             <Setter Property="Padding" Value="5" />
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Foreground" Value="Red" />
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -190,12 +188,25 @@
 
             <Grid Grid.Row="0" Margin="30 5 30 0" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Padding="0 15 30 0" Text="Пошук"  Style="{StaticResource TextStyle}"/>
-                <TextBox x:Name="FindTextBox" Grid.Column="1" Style="{StaticResource TextBoxStyle}" TextChanged="FindTextBox_TextChanged"/>
-
+                <Grid Grid.Column="1" HorizontalAlignment="Right">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Padding="0 15 5 0" Text="Пошук:" HorizontalAlignment ="Left" Style="{StaticResource TextStyle}"/>
+                        <TextBox x:Name="FindTextBox"  Height="30" Width="190" HorizontalAlignment ="Right"  Style="{StaticResource TextBoxStyle}" TextChanged="FindTextBox_TextChanged"/>
+                    </StackPanel>
+                   
+                </Grid>
+                
+                <ComboBox x:Name="tableComboBox" Height="30" MinWidth="400" Style="{StaticResource ComboBoxStyle}" Grid.Column="0" SelectionChanged="tableComboBox_SelectionChanged">
+                    <ComboBoxItem Content="Товари" />
+                    <ComboBoxItem Content="Продажі" />
+                    <ComboBoxItem Content="Доставки" />
+                    <ComboBoxItem Content="Постачальники" />
+                    <ComboBoxItem Content="Покупці" />
+                    <ComboBoxItem Content="Магазини" />
+                </ComboBox>
             </Grid>
 
             <Border Grid.Row="1" Grid.RowSpan ="2"  Background="#31343c" Margin="15 0 15 15" CornerRadius="10">

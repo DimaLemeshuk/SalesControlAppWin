@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.Services.Impl
 {
-    internal class CustomerService : ICustomerService
+    public class CustomerService : ICustomerService
     {
         private readonly CustomerRepository customerRepository;
         private readonly IMapper mapper;
@@ -87,10 +87,10 @@ namespace BusinessLogicLayer.Services.Impl
             customerRepository.Update(customer);
         }
 
-        public void Update(CustomerDTO item, string propertyName, object editedValue)
+        public bool Update(CustomerDTO item, string propertyName, object editedValue)
         {
             var customer = mapper.Map<CustomerDTO, Customer>(item);
-            customerRepository.Update(customer, propertyName, editedValue);
+            return customerRepository.Update(customer, propertyName, editedValue);
         }
 
         public void Delete(int id)

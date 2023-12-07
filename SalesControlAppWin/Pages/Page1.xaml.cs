@@ -17,12 +17,8 @@ namespace PresentationLayer.Pages
         public Page1()
         {
             InitializeComponent();
-
-            SupplierView.PrintToDataGrid(DBGrid);
-            //SaleView.PrintToDataGrid(DBGrid);
-            //DeliveryView.PrintToDataGrid(DBGrid);
-            //ProductView.PrintToDataGrid(DBGrid);
-
+            tableComboBox.SelectedIndex = 0;
+            ProductView.PrintToDataGrid(DBGrid);
         }
 
         private void DBGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
@@ -51,13 +47,48 @@ namespace PresentationLayer.Pages
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
-            ProductView.PrintToDataGrid(DBGrid);
+            tableComboBox_SelectionChanged( sender,e as SelectionChangedEventArgs);
         }
 
         private void FindTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             DBGridControl.findInDataGrid(FindTextBox.Text, DBGrid);
 
+        }
+
+        private void tableComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Отримати вибраний елемент ComboBox
+            ComboBoxItem selectedTableItem = (ComboBoxItem)tableComboBox.SelectedItem;
+
+            if (selectedTableItem != null)
+            {
+                // Отримати текст вибраного елемента (назву таблиці)
+                string selectedTableName = selectedTableItem.Content.ToString();
+
+                // Викликати відповідний метод print() для вибраної таблиці
+                switch (selectedTableName)
+                {
+                    case "Товари":
+                        ProductView.PrintToDataGrid(DBGrid);
+                        break;
+                    case "Продажі":
+                        SaleView.PrintToDataGrid(DBGrid);
+                        break;
+                    case "Доставки":
+                        DeliveryView.PrintToDataGrid(DBGrid);
+                        break;
+                    case "Постачальники":
+                        SupplierView.PrintToDataGrid(DBGrid);
+                        break;
+                    case "Покупці":
+                        CustomerView.PrintToDataGrid(DBGrid);
+                        break;
+                    case "Магазини":
+                        StoreView.PrintToDataGrid(DBGrid);
+                        break;
+                }
+            }
         }
     }
 }
