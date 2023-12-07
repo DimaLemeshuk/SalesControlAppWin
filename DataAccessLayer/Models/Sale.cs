@@ -17,7 +17,13 @@ public partial class Sale
 
     public double SalesAmount { get; set; }
 
-    public string Status { get; set; }
+    public string Status { get; set; } = null!;
+
+    public int CustomersId { get; set; }
+
+    public string Address { get; set; } = null!;
+
+    public virtual Customer Customers { get; set; } = null!;
 
     public virtual Product Product { get; set; } = null!;
 

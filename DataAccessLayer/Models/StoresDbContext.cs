@@ -15,6 +15,7 @@ public partial class StoresDbContext : DbContext
     {
     }
 
+    public virtual DbSet<Customer> Customers { get; set; }
     public virtual DbSet<Delivery> Deliveries { get; set; }
 
     public virtual DbSet<Groupproduct> Groupproducts { get; set; }
@@ -33,6 +34,27 @@ public partial class StoresDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Customer>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("customers");
+
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Fathersname)
+                .HasMaxLength(45)
+                .HasColumnName("fathersname");
+            entity.Property(e => e.Name)
+                .HasMaxLength(45)
+                .HasColumnName("name");
+            entity.Property(e => e.Phonenumber)
+                .HasMaxLength(15)
+                .HasColumnName("phonenumber");
+            entity.Property(e => e.Surname)
+                .HasMaxLength(45)
+                .HasColumnName("surname");
+        });
+
         modelBuilder.Entity<Delivery>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
@@ -116,22 +138,32 @@ public partial class StoresDbContext : DbContext
 
             entity.ToTable("sales");
 
+            entity.HasIndex(e => e.CustomersId, "sale-customer_idx");
+
             entity.HasIndex(e => e.ProductId, "sales-product_idx");
 
             entity.HasIndex(e => e.StoreId, "sales-store_idx");
 
             entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Address)
+                .HasMaxLength(200)
+                .HasColumnName("address");
+            entity.Property(e => e.CustomersId).HasColumnName("customers_id");
             entity.Property(e => e.DateTime)
                 .HasColumnType("datetime")
                 .HasColumnName("dateTime");
             entity.Property(e => e.ProductId).HasColumnName("product_id");
             entity.Property(e => e.Quantity).HasColumnName("quantity");
             entity.Property(e => e.SalesAmount).HasColumnName("salesAmount");
+            entity.Property(e => e.Status)
+                .HasColumnType("enum('Обробляється','Завершено','Доставляється','Повернено')")
+                .HasColumnName("status");
             entity.Property(e => e.StoreId).HasColumnName("store_id");
 
-            entity.Property(e => e.Status)
-                .HasColumnType("enum('Обробляється','Завершено', 'Доставляється', 'Повернено')")
-                .HasColumnName("status");
+            entity.HasOne(d => d.Customers).WithMany(p => p.Sales)
+                .HasForeignKey(d => d.CustomersId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("sale-customer");
 
             entity.HasOne(d => d.Product).WithMany(p => p.Sales)
                 .HasForeignKey(d => d.ProductId)
@@ -177,6 +209,23 @@ public partial class StoresDbContext : DbContext
                 .HasColumnName("rating");
         });
 
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.HasKey(e => e.Iduser).HasName("PRIMARY");
+
+            entity.ToTable("user");
+
+            entity.Property(e => e.Iduser).HasColumnName("iduser");
+            entity.Property(e => e.Login)
+                .HasMaxLength(100)
+                .HasColumnName("login");
+            entity.Property(e => e.Password)
+                .HasMaxLength(100)
+                .HasColumnName("password");
+            entity.Property(e => e.Type)
+                .HasMaxLength(100)
+                .HasColumnName("type");
+        });
         OnModelCreatingPartial(modelBuilder);
     }
 
