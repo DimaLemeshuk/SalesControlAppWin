@@ -48,12 +48,12 @@ namespace SalesControlAppWin
 
         private void Page2Button_Click(object sender, RoutedEventArgs e)
         {
-            //MainFrame.Content = new Page2();
+            MainFrame.Content = new Page2();
         }
 
         private void Page3Button_Click(object sender, RoutedEventArgs e)
         {
-            //MainFrame.Content = new Page3();
+            MainFrame.Content = new testPage();
         }
 
         private void Page4Button_Click(object sender, RoutedEventArgs e)

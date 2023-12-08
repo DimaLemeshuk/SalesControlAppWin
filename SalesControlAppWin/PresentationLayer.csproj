@@ -8,7 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BusinessLogicLayer\BusinessLogicLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="SaeediSoftWpfUiControls">
+      <HintPath>library\SaeediSoftWpfUiControls.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
