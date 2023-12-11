@@ -30,17 +30,21 @@ namespace PresentationLayer.ViewModels
 
         }
 
-        public static void AddNew(string nameProduct, string description, string _price, string _availableQuantity, string _suplierId, string _groupProductId)
+        public static void AddNew(string nameProduct, string description, string _price, string _availableQuantity, string suplier, string groupProduct)
         {
-            if (!(string.IsNullOrWhiteSpace(nameProduct) || string.IsNullOrWhiteSpace(description) || string.IsNullOrWhiteSpace(_price) || string.IsNullOrWhiteSpace(_availableQuantity) || string.IsNullOrWhiteSpace(_suplierId) || string.IsNullOrWhiteSpace(_groupProductId)))
+            if (!(string.IsNullOrWhiteSpace(nameProduct) || string.IsNullOrWhiteSpace(description) || string.IsNullOrWhiteSpace(_price) || string.IsNullOrWhiteSpace(_availableQuantity) || string.IsNullOrWhiteSpace(suplier) || string.IsNullOrWhiteSpace(groupProduct)))
             {
                 if(Double.TryParse(_price.Replace('.', ','), out double price))
                 {
                     if (int.TryParse(_availableQuantity.Replace('.', ','), out int availableQuantity))
                     {
-                        if (int.TryParse(_suplierId.Replace('.', ','), out int suplierId))
+                        var supplierService = new SupplierService();
+                        var Supplier = supplierService.Find(s => s.NameSuppliers.Equals(suplier)).FirstOrDefault();
+                        if (Supplier != null)
                         {
-                            if (int.TryParse(_groupProductId.Replace('.', ','), out int groupProductId))
+                            var groupproductService = new GroupproductService();
+                            var Group = groupproductService.Find(s => s.NameGroupproducts.Equals(groupProduct)).FirstOrDefault();
+                            if (Group != null)
                             {
                                 try
                                 {
@@ -51,10 +55,10 @@ namespace PresentationLayer.ViewModels
                                         Description = description,
                                         Price = price,
                                         AvailableQuantity = availableQuantity,
-                                        SuplierId = suplierId,
-                                        GroupProductsId = groupProductId
+                                        SuplierId = Supplier.Id,
+                                        GroupProductsId = Group.Id,
                                     };
-                                    if (productService.Find(item => item.NameProducts == nameProduct && item.SuplierId == suplierId).FirstOrDefault() == null)
+                                    if (productService.Find(item => item.NameProducts == nameProduct && item.SuplierId == Supplier.Id).FirstOrDefault() == null)
                                     {
                                         productService.Create(product);
                                         productService.SaveChanges();
@@ -72,12 +76,12 @@ namespace PresentationLayer.ViewModels
                             }
                             else
                             {
-                                MessageBox.Show("\"Категорія Id \" має бути цілим числом!");
+                                MessageBox.Show("Такої категорії не існує");
                             }
                         }
                         else
                         {
-                            MessageBox.Show("\"Постачальник Id \" має бути цілим числом!");
+                            MessageBox.Show("Постачальника з таким ім'ям не знайдено");
                         }
                     }
                     else

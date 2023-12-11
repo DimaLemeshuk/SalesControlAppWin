@@ -1,4 +1,5 @@
 ﻿
+using PresentationLayer.ViewModels;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,7 +18,7 @@ namespace PresentationLayer.Pages.Page2Frame
 
         private void fillButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            StoreView.AddNew(NameStoresTextBox.Text, ((ComboBoxItem)SocialNetvorcComboBox.SelectedItem).Content.ToString());
         }
     }
 }

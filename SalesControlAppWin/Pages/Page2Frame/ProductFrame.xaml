@@ -143,7 +143,7 @@
         <TextBlock Grid.Row="5" Grid.Column="0" Text="Постачальник" Style="{StaticResource TextStyle}"/>
         <!--<TextBox x:Name="supplierTextBox" Grid.Row="5" Grid.Column="1" Style="{StaticResource TextBoxStyle}" />-->
 
-        <ssoft:ComboBoxAutoComplete x:Name="supplierComboBox" Grid.Row="5"  Grid.Column="1" Loaded="groupComboBox_Loaded" FilterMode="Contains" DisplayMemberPath="DisplayField" Style="{StaticResource AutoCombodox }" />
+        <ssoft:ComboBoxAutoComplete x:Name="supplierComboBox" Grid.Row="5"  Grid.Column="1" FilterMode="Contains" DisplayMemberPath="DisplayField" Style="{StaticResource AutoCombodox }" Loaded="supplierComboBox_Loaded" />
 
         <Button x:Name="FillBtton" Grid.Row="6" Grid.Column="0" Height="35" HorizontalAlignment="Left" Width="200" Margin="20 10 0 10" Content="Заповнити" Click="FillBtton_Click"/>
 

@@ -45,10 +45,12 @@
             <Setter Property="Foreground" Value="#26292f" />
             <Setter Property="FontSize" Value="14" />
             <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="Margin" Value="0 30 20 30" />
+            <Setter Property="Margin" Value="0" />
             <Setter Property="Padding" Value="0" />
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Height" Value="40"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
@@ -106,14 +108,18 @@
         </Border>
 
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="Відомча належність" Style="{StaticResource TextStyle}"/>
-        <TextBox x:Name="NameTextBox" Grid.Row="0" Grid.Column="1" Style="{StaticResource TextBoxStyle}" />
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Назва магазину" Style="{StaticResource TextStyle}"/>
+        <TextBox x:Name="NameStoresTextBox" Grid.Row="0" Grid.Column="1" Style="{StaticResource TextBoxStyle}" />
 
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="Додаткові дані" Style="{StaticResource TextStyle}"/>
-        <TextBox x:Name="AdditionalTextBox" Grid.Row="1" Grid.Column="1" Style="{StaticResource TextBoxStyle}" />
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Соціальна мережа" Style="{StaticResource TextStyle}"/>
+        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="SocialNetvorcComboBox" Margin="0 0 30 0" Style="{StaticResource ComboBoxStyle}">
+            <ComboBoxItem Content="Instagram" />
+            <ComboBoxItem Content="Facebook" />
+            <ComboBoxItem Content="TikTok" />
+            <ComboBoxItem Content="Telegram" />
+            <ComboBoxItem Content="Viber" />
+        </ComboBox>
 
-        
-
-        <Button  x:Name= "fillButton"  Grid.Row="2" Grid.Column="1" Height="40" Width="200" HorizontalAlignment="Right" Margin="0 0 20 0" Content="Заповнити" Click="fillButton_Click"/>
+        <Button  x:Name= "fillButton"  Grid.Row="2" Grid.Column="1" Height="40" Width="200" HorizontalAlignment="Right" Margin="0 0 30 0" Content="Заповнити" Click="fillButton_Click"/>
     </Grid>
 </Page>
