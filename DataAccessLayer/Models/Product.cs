@@ -19,6 +19,8 @@ public partial class Product
 
     public int GroupProductsId { get; set; }
 
+    public string Address { get; set; } = null!;
+
     public virtual ICollection<Delivery> Deliveries { get; set; } = new List<Delivery>();
 
     public virtual Groupproduct GroupProducts { get; set; } = null!;
