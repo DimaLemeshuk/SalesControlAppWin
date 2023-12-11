@@ -1,4 +1,5 @@
 ﻿
+using PresentationLayer.ViewModels.Control;
 using System;
 using System.Linq;
 using System.Windows;
@@ -16,9 +17,9 @@ namespace PresentationLayer.Pages.Page2Frame
             InitializeComponent();
         }
 
-        private void FillBtton_Click(object sender, RoutedEventArgs e)
+        private void FillButton_Click(object sender, RoutedEventArgs e)
         {
-
+            SupplierView.AddNew(NameSuppliersTextBox.Text, ContactsTextBox.Text, RatingTextBox.Text);
         }
     }
 }
