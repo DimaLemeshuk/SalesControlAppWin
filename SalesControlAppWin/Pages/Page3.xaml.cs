@@ -67,7 +67,7 @@ namespace PresentationLayer.Pages
 
             if (DBGrid2.SelectedItem != null)
             {
-                selectedRowDataGrid1 = DBGrid1.SelectedItem;
+                selectedRowDataGrid2 = DBGrid2.SelectedItem;
                 if (DBGrid2.SelectedItem is CustomerDTO customer)
                 {
                     CustomerTextBlock.Text = "Покупець: " + customer.Name + " " + customer.Surname ; 
