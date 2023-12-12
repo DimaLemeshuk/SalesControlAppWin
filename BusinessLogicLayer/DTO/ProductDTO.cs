@@ -17,8 +17,6 @@ public class ProductDTO
 
     public int SuplierId { get; set; }
 
-    public string Address { get; set; } = null!;
-
     public int GroupProductsId { get; set; }
     public SupplierDTO SupplierDTO { get; set; } = null!;
     public GroupproductDTO GroupproductDTO { get; set; } = null!;

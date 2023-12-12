@@ -22,6 +22,7 @@ public partial class Sale
     public int CustomersId { get; set; }
 
     public string Address { get; set; } = null!;
+    public string Payment { get; set; } = null!;
 
     public virtual Customer Customers { get; set; } = null!;
 

@@ -17,7 +17,7 @@ namespace PresentationLayer.ViewModels
         public static void PrintToDataGrid(DataGrid dataGrid)
         {
             DBGridControl.DelOllColumn(dataGrid);
-            dataGrid.ItemsSource = new CustomerRepository().GetAll()
+            dataGrid.ItemsSource = new CustomerService().GetAll()
                 .ToList();
 
             DBGridControl.AddColumn(dataGrid, "id", "Id", true);

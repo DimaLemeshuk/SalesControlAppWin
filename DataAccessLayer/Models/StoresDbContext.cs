@@ -121,10 +121,6 @@ public partial class StoresDbContext : DbContext
             entity.Property(e => e.Price).HasColumnName("price");
             entity.Property(e => e.SuplierId).HasColumnName("suplier_id");
 
-            entity.Property(e => e.Address)
-                .HasMaxLength(200)
-                .HasColumnName("address_");
-
             entity.HasOne(d => d.GroupProducts).WithMany(p => p.Products)
                 .HasForeignKey(d => d.GroupProductsId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -168,6 +164,10 @@ public partial class StoresDbContext : DbContext
                 .HasForeignKey(d => d.CustomersId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("sale-customer");
+
+            entity.Property(e => e.Payment)
+               .HasColumnType("enum('Передоплата','Післяплата')")
+               .HasColumnName("payment");
 
             entity.HasOne(d => d.Product).WithMany(p => p.Sales)
                 .HasForeignKey(d => d.ProductId)

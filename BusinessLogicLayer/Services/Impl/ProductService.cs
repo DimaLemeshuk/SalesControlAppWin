@@ -88,12 +88,10 @@ namespace BusinessLogicLayer.Services.Impl
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.NameProducts, opt => opt.MapFrom(src => src.NameProducts))
                 .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Price))
-                .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Address))
                 .ForMember(dest => dest.SupplierDTO, opt => opt.MapFrom(src => (new SupplierService()).Get(src.SuplierId)))
                 .ForMember(dest => dest.GroupproductDTO, opt => opt.MapFrom(src => (new GroupproductService()).Get(src.GroupProductsId)));
             })
             .CreateMapper();
-
 
             var productDtos = mapper.Map<IEnumerable<Product>, List<ProductDTO>>(products);
             //var productDtos = mapper.Map<IEnumerable<Product>>(products).Cast<ProductDTO>();

@@ -21,6 +21,10 @@ public class SaleDTO
 
     public int CustomersId { get; set; }
 
+    public string Address { get; set; } = null!;
+
+    public string Payment { get; set; } = null!;
+
     public virtual ProductDTO ProductDTO { get; set; } = null!;
 
     public virtual StoreDTO StoreDTO { get; set; } = null!;
