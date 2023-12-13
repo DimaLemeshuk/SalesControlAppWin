@@ -63,7 +63,7 @@ namespace SalesControlAppWin
 
         private void Page5Button_Click(object sender, RoutedEventArgs e)
         {
-            //MainFrame.Content = new Page5();
+            MainFrame.Content = new Page5();
 
         }
     }

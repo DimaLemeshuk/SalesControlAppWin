@@ -75,9 +75,26 @@ namespace BusinessLogicLayer.Services.Impl
 
         public IEnumerable<SaleDTO> Find(Func<SaleDTO, bool> predicate)
         {
+            //var all = salesRepository.GetAll();
+            //var filtered = all.Select(sale => mapper.Map<Sale, SaleDTO>(sale))
+
+            //    .Where(predicate);
+            //return filtered;
             var all = salesRepository.GetAll();
-            var filtered = all.Select(sale => mapper.Map<Sale, SaleDTO>(sale))
-                .Where(predicate);
+
+            var productService = new ProductService();
+            var storeService = new StoreService();
+            var customerService = new CustomerService();
+
+            var filtered = all.Select(sale =>
+            {
+                var saleDTO = mapper.Map<Sale, SaleDTO>(sale);
+                saleDTO.ProductDTO = productService.Get(sale.ProductId);
+                saleDTO.StoreDTO = storeService.Get(sale.StoreId);
+                saleDTO.CustomersDTO = customerService.Get(sale.CustomersId);
+                return saleDTO;
+            }).Where(predicate);
+
             return filtered;
         }
 

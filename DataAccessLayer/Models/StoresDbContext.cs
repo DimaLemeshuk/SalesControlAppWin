@@ -165,6 +165,10 @@ public partial class StoresDbContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("sale-customer");
 
+            entity.Property(e => e.TTN)
+                .HasMaxLength(100)
+                .HasColumnName("ttn");
+
             entity.Property(e => e.Payment)
                .HasColumnType("enum('Передоплата','Післяплата')")
                .HasColumnName("payment");

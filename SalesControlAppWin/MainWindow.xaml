@@ -70,7 +70,7 @@ Title="MainWindow" Height="577" Width="1041" MinHeight="577" MinWidth="1041"
                     <Button x:Name="Page2Button" Content="Додати нові дані" Style="{StaticResource LeftMenuButtonStyle}" Click="Page2Button_Click" />
                     <Button x:Name="Page3Button" Content="Продажі" Style="{StaticResource LeftMenuButtonStyle}" Click="Page3Button_Click" />
                     <Button x:Name="Page4Button" Content="Доставки" Style="{StaticResource LeftMenuButtonStyle}" Click="Page4Button_Click" />
-                    <Button x:Name="Page5Button" Content="Відшкодування" Style="{StaticResource LeftMenuButtonStyle}" Click="Page5Button_Click" />
+                    <Button x:Name="Page5Button" Content="Керування продажами" Style="{StaticResource LeftMenuButtonStyle}" Click="Page5Button_Click" />
                 </StackPanel>
             </Grid>
 

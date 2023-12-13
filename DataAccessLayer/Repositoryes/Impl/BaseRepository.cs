@@ -60,6 +60,9 @@ namespace DataAccessLayer.Repositoryes.Impl
         public void Update(T item)
         {
             _context.Entry(item).State = EntityState.Modified;
+            //T currItem = _set.FirstOrDefault(p => p == item);
+            //currItem = item.;
+            //_context.Entry(currItem).State = EntityState.Modified;
         }
 
         public bool Update(T item, string propertyName, object editedValue)

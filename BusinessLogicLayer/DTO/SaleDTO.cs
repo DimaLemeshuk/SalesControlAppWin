@@ -24,6 +24,7 @@ public class SaleDTO
     public string Address { get; set; } = null!;
 
     public string Payment { get; set; } = null!;
+    public string? TTN { get; set; } = null!;
 
     public virtual ProductDTO ProductDTO { get; set; } = null!;
 

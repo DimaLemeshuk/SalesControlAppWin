@@ -32,8 +32,51 @@ namespace PresentationLayer.ViewModels
             DBGridControl.AddColumn(dataGrid, "Прізвище замовника", "CustomersDTO.Surname", true);
             DBGridControl.AddColumn(dataGrid, "Адреса доставки", "Address");
             DBGridControl.AddColumn(dataGrid, "Спосіб доставки", "Payment");
+            DBGridControl.AddColumn(dataGrid, "ТТН", "TTN");
 
         }
+
+        public static void PrintToDataGridOnlyNotSendOrSend(DataGrid dataGrid, string send)
+        {
+            DBGridControl.DelOllColumn(dataGrid);
+            dataGrid.ItemsSource = new SaleService().Find(s => s.Status.Equals(send))
+                .ToList();
+
+            DBGridControl.AddColumn(dataGrid, "id", "Id", true);
+            DBGridControl.AddColumn(dataGrid, "Товар", "ProductDTO.NameProducts", true);
+            DBGridControl.AddColumn(dataGrid, "Назва магазину", "StoreDTO.NameStores", true);
+            DBGridControl.AddColumn(dataGrid, "Дата та час здійснення\nзамовлення", "DateTime", true);
+            DBGridControl.AddColumn(dataGrid, "Кількість", "Quantity", true);
+            DBGridControl.AddColumn(dataGrid, "Загальна вартість", "SalesAmount", true);      
+            DBGridControl.AddColumn(dataGrid, "Ім'я замовника", "CustomersDTO.Name", true);
+            DBGridControl.AddColumn(dataGrid, "Прізвище замовника", "CustomersDTO.Surname", true);
+            DBGridControl.AddColumn(dataGrid, "Адреса доставки", "Address", true);
+            DBGridControl.AddColumn(dataGrid, "Спосіб доставки", "Payment", true);
+            DBGridControl.AddColumn(dataGrid, "ТТН", "TTN");
+        }
+
+        public static void ChangeStatus(object select, string newStatus)
+        {
+            if (select != null)
+            {
+                if (select is SaleDTO sale)
+                {
+                    var saleService = new SaleService();
+                    saleService.Update(sale, "Status", newStatus);
+                    saleService.SaveChanges();
+                    MessageBox.Show("Статус змінено!");
+                }
+                else
+                {
+                    MessageBox.Show("Вибраний рядок некоректний!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Рядок таблиці не вибрано!");
+            }
+        }
+
 
         public static void AddNew(object _product, object _customer, string nameStore, string _quantity, string address, string payment)
         {
