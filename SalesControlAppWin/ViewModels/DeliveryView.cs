@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace PresentationLayer.ViewModels.Control
@@ -24,7 +25,77 @@ namespace PresentationLayer.ViewModels.Control
             DBGridControl.AddColumn(dataGrid, "Кількість", "Quantity");
             DBGridControl.AddColumn(dataGrid, "Загальна вартість", "DeliveryCost");
             DBGridControl.AddColumn(dataGrid, "Статус", "Status");
-            DBGridControl.AddColumn(dataGrid, "Планована дата\nдоставки", "DateTime");
+            DBGridControl.AddColumn(dataGrid, "Планована дата\nдоставки", "ScheduledDateTime");
         }
+
+        public static void AddNew(object _product, DateTime scheduledDateTime, string _quantity, string _deliveryCost)
+        {
+            if (!(string.IsNullOrWhiteSpace(_quantity) || string.IsNullOrWhiteSpace(_deliveryCost)) && _product != null && scheduledDateTime != null)
+            {
+                if (Double.TryParse(_deliveryCost.Replace('.', ','), out double deliveryCost))
+                {
+                    if (int.TryParse(_quantity.Replace('.', ','), out int quantity))
+                    {
+                        if (scheduledDateTime > DateTime.Now)
+                        {
+                            if(_product is ProductDTO product)
+                            {
+                                var productService = new ProductService();
+                                var Product = productService.Find(s => s.Id == product.Id).FirstOrDefault();
+                                if (Product != null)
+                                {
+                                    try
+                                    {
+                                        var deliveryService = new DeliveryService();
+                                        var delivery = new DeliveryDTO
+                                        {
+                                            ProductId = Product.Id,
+                                            DeliveryCost = deliveryCost,
+                                            ScheduledDateTime = scheduledDateTime,
+                                            Quantity = quantity,
+                                            Status = "Заплановано"
+
+                                        };
+                                        deliveryService.Create(delivery);
+                                        deliveryService.SaveChanges();
+                                        MessageBox.Show("Дані успішно додано!");
+
+                                    }
+                                    catch
+                                    {
+                                        MessageBox.Show("Введені невірні дані!");
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Вибрано неіснуючий товар");
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Помилка під час пошуку продукту");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Прогнозована дата доставки не може бути в минулому!");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("\"Кількість\" - має бути цілим числом!");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("\"Вартість\" - має бути числом!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Заповніть усі поля!");
+            }
+        }
+
     }
 }

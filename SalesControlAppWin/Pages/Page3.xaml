@@ -322,6 +322,8 @@
                 <TextBlock x:Name="CustomerTextBlock" Grid.Row="9" Padding="0 0 5 0" Text="Покупець:" HorizontalAlignment ="Left" Style="{StaticResource TextStyle}" VerticalAlignment="Center"/>
 
                 <TextBlock x:Name="SaleAmountTextBlock" Grid.Row="10" Padding="0 0 5 0" Text="" HorizontalAlignment ="Left" Style="{StaticResource TextStyle}" VerticalAlignment="Center"/>
+                
+                
                 <Button x:Name="FillBtton" Grid.Row="11" Grid.Column="0" Height="35" HorizontalAlignment="Left" Width="200" Margin="0 0 0 10" Content="Підтвердити" Click="FillBtton_Click"/>
             </Grid>
         </Grid>

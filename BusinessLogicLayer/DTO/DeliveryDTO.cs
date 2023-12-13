@@ -10,7 +10,7 @@ public class DeliveryDTO
 
     public int ProductId { get; set; }
 
-    public DateTime DateTime { get; set; }
+    public DateTime? DateTime { get; set; }
 
     public int Quantity { get; set; }
 
@@ -18,7 +18,7 @@ public class DeliveryDTO
 
     public string Status { get; set; }
 
-    public DateTime ScheduledDateTime { get; set; }
+    public DateTime? ScheduledDateTime { get; set; }
 
     public virtual ProductDTO ProductDTO { get; set; } = null!;
 

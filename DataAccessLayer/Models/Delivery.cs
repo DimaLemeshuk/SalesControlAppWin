@@ -9,7 +9,7 @@ public partial class Delivery
 
     public int ProductId { get; set; }
 
-    public DateTime DateTime { get; set; }
+    public DateTime? DateTime { get; set; }
 
     public int Quantity { get; set; }
 
