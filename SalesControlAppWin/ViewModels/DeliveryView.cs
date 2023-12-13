@@ -28,6 +28,42 @@ namespace PresentationLayer.ViewModels.Control
             DBGridControl.AddColumn(dataGrid, "Планована дата\nдоставки", "ScheduledDateTime");
         }
 
+        public static void PrintToDataGridOnlyNotSendOrSend(DataGrid dataGrid, string send)
+        {
+            DBGridControl.DelOllColumn(dataGrid);
+            dataGrid.ItemsSource = new DeliveryService().Find(s => s.Status.Equals(send))
+                .ToList();
+
+            DBGridControl.AddColumn(dataGrid, "id", "Id", true);
+            DBGridControl.AddColumn(dataGrid, "Товар", "ProductDTO.NameProducts", true);
+            DBGridControl.AddColumn(dataGrid, "Дата доставки", "DateTime");
+            DBGridControl.AddColumn(dataGrid, "Кількість", "Quantity");
+            DBGridControl.AddColumn(dataGrid, "Загальна вартість", "DeliveryCost");
+            DBGridControl.AddColumn(dataGrid, "Планована дата\nдоставки", "ScheduledDateTime");
+        }
+
+        public static void ChangeStatus(object select, string newStatus)
+        {
+            if (select != null)
+            {
+                if (select is DeliveryDTO deliveryDTO)
+                {
+                    var deliveryService = new DeliveryService();
+                    deliveryService.Update(deliveryDTO, "Status", newStatus);
+                    deliveryService.SaveChanges();
+                    MessageBox.Show("Статус змінено!");
+                }
+                else
+                {
+                    MessageBox.Show("Вибраний рядок некоректний!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Рядок таблиці не вибрано!");
+            }
+        }
+
         public static void AddNew(object _product, DateTime scheduledDateTime, string _quantity, string _deliveryCost)
         {
             if (!(string.IsNullOrWhiteSpace(_quantity) || string.IsNullOrWhiteSpace(_deliveryCost)) && _product != null && scheduledDateTime != null)
