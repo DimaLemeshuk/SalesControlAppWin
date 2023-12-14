@@ -65,23 +65,17 @@ namespace BusinessLogicLayer.Services.Impl
 
         public IEnumerable<DeliveryDTO> Find(Func<DeliveryDTO, bool> predicate)
         {
-            //var allDeliveries = deliveryRepository.GetAll();
-            //var filteredDeliveries = allDeliveries.Select(delivery => mapper.Map<Delivery, DeliveryDTO>(delivery))
-            //                                     .Where(predicate);
-            //return filteredDeliveries;
+
             var allDeliveries = deliveryRepository.GetAll();
-            var filteredDeliveries = allDeliveries.Select(delivery => mapper.Map<Delivery, DeliveryDTO>(delivery));
-
-            // Додайте логіку для маппінгу ProductDTO
-            foreach (var deliveryDTO in filteredDeliveries)
+            var filtered = allDeliveries.Select(delivery =>
             {
-                deliveryDTO.ProductDTO = (new ProductService()).Get(deliveryDTO.ProductId);
-            }
+                var DeliveryDTO = mapper.Map<Delivery, DeliveryDTO>(delivery);
+                DeliveryDTO.ProductDTO = new ProductService().Get(delivery.ProductId);
+                return DeliveryDTO;
 
-            // Застосуйте фільтр
-            var result = filteredDeliveries.Where(predicate);
+            }).Where(predicate);          
 
-            return result;
+            return filtered;
         
         }
 

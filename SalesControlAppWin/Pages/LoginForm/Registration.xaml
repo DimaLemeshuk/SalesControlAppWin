@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer.Pages.LoginForm"
         mc:Ignorable="d"
-        Title="Login" Height="300" Width="400" Background="#31343c">
+        Title="Login" Height="300" Width="400" Background="#31343c" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
             <Grid.ColumnDefinitions >

@@ -1,4 +1,6 @@
-﻿using PresentationLayer.Pages;
+﻿using BusinessLogicLayer.Services.Impl;
+using PresentationLayer.Pages;
+using PresentationLayer.Pages.LoginForm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -70,6 +72,52 @@ namespace SalesControlAppWin
         private void Page6Button_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new Page6();
+        }
+
+
+        
+
+        private void AddUser_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (new UserService().GetCurrentUser().Type.Equals("Admin"))
+            {
+                // Поточне вікно
+                //var currentWindow = Application.Current.MainWindow;
+
+                // Створити нове вікно
+                var newWindow = new Registration(); // Замініть на ваш клас нового вікна
+
+                // Встановити нове вікно як головне вікно застосунку
+                //Application.Current.MainWindow = newWindow;
+
+                // Закрити поточне вікно
+                //currentWindow.Close();
+
+                // Відобразити нове вікно
+                newWindow.Show();
+            }
+            else
+            {
+                MessageBox.Show("У вас немає прав \nдля створення нових користувачів");
+            }
+        }
+
+        private void Exit_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            // Поточне вікно
+            var currentWindow = Application.Current.MainWindow;
+
+            // Створити нове вікно
+            var newWindow = new Login(); // Замініть на ваш клас нового вікна
+
+            // Встановити нове вікно як головне вікно застосунку
+            Application.Current.MainWindow = newWindow;
+
+            // Закрити поточне вікно
+            currentWindow.Close();
+
+            // Відобразити нове вікно
+            newWindow.Show();
         }
     }
 }

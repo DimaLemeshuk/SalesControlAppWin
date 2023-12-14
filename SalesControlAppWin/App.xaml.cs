@@ -19,7 +19,7 @@ namespace SalesControlAppWin
             base.OnStartup(e);
 
             // Створюємо екземпляр нового вікна
-            var mainWindow = new Registration(); // Замініть це на новий клас вікна, який ви хочете використовувати
+            var mainWindow = new Login(); // Замініть це на новий клас вікна, який ви хочете використовувати
 
             // Задаємо це вікно як головне вікно програми
             mainWindow.Show();

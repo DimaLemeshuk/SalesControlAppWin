@@ -32,7 +32,7 @@ namespace PresentationLayer.Pages.LoginForm
             string login = LoginTextBlock.Text;
             byte[] password = MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(PasswordBox.Password));
 
-            if (UserView.loginUser(LoginTextBlock.Text, MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(PasswordBox.Password))))
+            if (UserView.loginUser(UsernameTextBox.Text, MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(PasswordBox.Password))))
             {
                 // Поточне вікно
                 var currentWindow = Application.Current.MainWindow;

@@ -29,6 +29,7 @@ namespace PresentationLayer.Pages
             InitializeComponent();
             //MainFrame.Content = new EnterprisesFrame();
             //ChooseT.Text = EnterprisesTable.Content.ToString();
+            tableComboBox.SelectedIndex = 0;
         }
 
         private void tableComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

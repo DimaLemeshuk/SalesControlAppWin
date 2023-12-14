@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SalesControlAppWin"
         mc:Ignorable="d"
-Title="MainWindow" Height="577" Width="1041" MinHeight="577" MinWidth="1041"
+Title="" Height="577" Width="1041" MinHeight="577" MinWidth="1041"
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
@@ -73,6 +73,10 @@ Title="MainWindow" Height="577" Width="1041" MinHeight="577" MinWidth="1041"
                     <Button x:Name="Page5Button" Content="Керування продажами" Style="{StaticResource LeftMenuButtonStyle}" Click="Page5Button_Click" />
                     <Button x:Name="Page6Button" Content="Керування доставками" Style="{StaticResource LeftMenuButtonStyle}" Click="Page6Button_Click" />
 
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                    <Label x:Name="Exit" Content="Вихід" FontSize="14" Foreground="White" Margin="5 0 0 0" MouseDoubleClick="Exit_MouseDoubleClick"/>
+                    <Label x:Name="AddUser" Content="Додати користувача" FontSize="14" Foreground="White" Margin="5 0 0 0" MouseDoubleClick="AddUser_MouseDoubleClick"/>
                 </StackPanel>
             </Grid>
 

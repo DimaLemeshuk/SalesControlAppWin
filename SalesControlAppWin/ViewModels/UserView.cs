@@ -30,7 +30,7 @@ namespace PresentationLayer.ViewModels.Control
             if(!string.IsNullOrWhiteSpace(login) && password.Length !=0)
             {
                 var userService = new UserService();
-                var user = userService.Find(u => u.Login == login).FirstOrDefault();
+                var user = userService.Find(u => u.Login.Equals(login)).FirstOrDefault();
                 if(user != null)
                 {
                     if(user.Password.Equals(Encoding.UTF8.GetString(password)))
