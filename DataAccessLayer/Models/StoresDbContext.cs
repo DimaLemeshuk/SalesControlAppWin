@@ -231,7 +231,7 @@ public partial class StoresDbContext : DbContext
                 .HasMaxLength(100)
                 .HasColumnName("password");
             entity.Property(e => e.Type)
-                .HasMaxLength(100)
+                .HasColumnType("enum('Admin','Store_manager')")
                 .HasColumnName("type");
         });
         OnModelCreatingPartial(modelBuilder);
