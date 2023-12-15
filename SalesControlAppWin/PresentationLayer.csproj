@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.5.1" />
+    <PackageReference Include="MicrosoftExpressionInteractions" Version="3.0.40218" />
   </ItemGroup>
 
   <ItemGroup>

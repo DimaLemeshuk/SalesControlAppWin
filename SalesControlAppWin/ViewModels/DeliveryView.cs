@@ -3,6 +3,7 @@ using BusinessLogicLayer.Services.Impl;
 using PresentationLayer.Control;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,6 +51,7 @@ namespace PresentationLayer.ViewModels.Control
                 {
                     var deliveryService = new DeliveryService();
                     deliveryService.Update(deliveryDTO, "Status", newStatus);
+                    deliveryService.Update(deliveryDTO, "DateTime", DateTime.Now);
                     deliveryService.SaveChanges();
                     MessageBox.Show("Статус змінено!");
                 }

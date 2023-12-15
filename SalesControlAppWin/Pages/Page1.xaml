@@ -3,7 +3,12 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+     
+        xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      
       xmlns:local="clr-namespace:PresentationLayer.Pages"
+
       mc:Ignorable="d" 
  d:DesignHeight="450" d:DesignWidth="800"
       Title="Page1">
@@ -69,7 +74,7 @@
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="DataGridStyle222" TargetType="DataGrid">
+        <!--<Style x:Key="DataGridStyle222" TargetType="DataGrid">
             <Setter Property="Background" Value="#d9d9d9" />
             <Setter Property="Foreground" Value="#26292f" />
             <Setter Property="FontSize" Value="12" />
@@ -88,7 +93,7 @@
                 <Trigger Property="IsMouseOver" Value="True">
                 </Trigger>
             </Style.Triggers>
-        </Style>
+        </Style>-->
 
         <!--/////////////////////////////////////-->
         <Style x:Key="DataGridCellStyle" TargetType="DataGridCell">
@@ -96,11 +101,21 @@
             <Setter Property="BorderBrush" Value="Transparent" />
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Padding" Value="2" />
+
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Foreground" Value="#d6d6d8" />
+                    <Setter Property="Background" Value="#6935ac" />
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#6935ac " />
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
         <Style x:Key="DataGridRowStyle" TargetType="DataGridRow">
-            <Setter Property="Background" Value="#F7F7F7" />
-            <Setter Property="Foreground" Value="#26292F" />
+            <Setter Property="Background" Value="#d6d6d8" />
+            <Setter Property="Foreground" Value="#31343c" />
             <Setter Property="FontSize" Value="14" />
             <Setter Property="FontWeight" Value="Normal" />
             <Setter Property="Padding" Value="2" />
@@ -111,17 +126,31 @@
 
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#E6E6E6" />
+                    <Setter Property="Background" Value="#6935ac " />
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Foreground" Value="#6935ac" />
+                    <Setter Property="Background" Value="#d6d6d8" />
                 </Trigger>
             </Style.Triggers>
+        </Style>
+
+        <Style x:Key="DataGridColumnHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#adaeb1" /> <!--//31343c-->
+            <Setter Property="Foreground" Value="#000000" />
+            <Setter Property="BorderBrush" Value="#000000" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="6,4" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
         </Style>
         <!--/////////////////////////////////////-->
 
         <Style x:Key="DataGridStyle" TargetType="DataGrid">
-            <Setter Property="Background" Value="#F7F7F7" />
-            <Setter Property="Foreground" Value="#26292F" />
-            <Setter Property="BorderBrush" Value="#D9D9D9" />
-            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Background" Value="#d7d7d7" />
+            <Setter Property="Foreground" Value="#464850" />
+            <Setter Property="BorderBrush" Value="#000000" />
+  
             <Setter Property="FontSize" Value="14" />
             <Setter Property="FontWeight" Value="Normal" />
             <Setter Property="Margin" Value="0" />
@@ -132,14 +161,19 @@
             <Setter Property="VerticalContentAlignment" Value="Top" />
             <Setter Property="RowStyle" Value="{StaticResource DataGridRowStyle}" />
             <Setter Property="CellStyle" Value="{StaticResource DataGridCellStyle}" />
+            <Setter Property="ColumnHeaderStyle" Value="{StaticResource DataGridColumnHeaderStyle}" />
 
             <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#E6E6E6" />
-                    <Setter Property="BorderBrush" Value="#A5A5A5" />
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Foreground" Value="#6935ac" />
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Foreground" Value="#6935ac" />
+                    <Setter Property="Background" Value="#d6d6d8" />
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <!--івпаві////////////////////////////////////////////////////////-->
 
         <Style x:Key="GridStyle1" TargetType="Grid">
             <Setter Property="Background" Value="#d9d9d9" />
