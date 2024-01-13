@@ -240,6 +240,7 @@
                     <ComboBoxItem Content="Постачальники" />
                     <ComboBoxItem Content="Покупці" />
                     <ComboBoxItem Content="Магазини" />
+                    <ComboBoxItem Content="Користувачі" />
                 </ComboBox>
             </Grid>
 

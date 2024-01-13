@@ -131,11 +131,19 @@ namespace PresentationLayer.Control
                     Service.SaveChanges();
                     MessageBox.Show("Дані успішно видалено");
                 }
+                else if (selectedItem is UserDTO user)
+                {
+                    var Service = new UserService();
+                    Service.Delete(user.Iduser);
+                    Service.SaveChanges();
+                    MessageBox.Show("Дані успішно видалено");
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Сталася помилка при видаленні : " + ex.Message);
-            }         
+                //MessageBox.Show("Сталася помилка при видаленні : " + ex.Message);
+                MessageBox.Show("Неможливо видалити цей рядок,\nоскількі інша таблиця містить посилання на нього");
+            }
         }
 
 
@@ -209,6 +217,16 @@ namespace PresentationLayer.Control
                 {
                     var Service = new SupplierService();
                     var curr = Service.Get(supplier.Id);
+                    Binding binding = (e.Column as DataGridBoundColumn).Binding as Binding;
+                    string propertyName = binding.Path.Path;//змінене поле   
+                    Service.Update(curr, propertyName, ConvertToNumberOrString(editedValue));
+                    Service.SaveChanges();
+                    MessageBox.Show("Зміни успішно збережено");
+                }
+                else if (editedItem is UserDTO user)
+                {
+                    var Service = new UserService();
+                    var curr = Service.Get(user.Iduser);
                     Binding binding = (e.Column as DataGridBoundColumn).Binding as Binding;
                     string propertyName = binding.Path.Path;//змінене поле   
                     Service.Update(curr, propertyName, ConvertToNumberOrString(editedValue));

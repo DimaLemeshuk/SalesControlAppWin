@@ -87,6 +87,9 @@ namespace PresentationLayer.Pages
                     case "Магазини":
                         StoreView.PrintToDataGrid(DBGrid);
                         break;
+                    case "Користувачі":
+                        UserView.PrintToDataGrid(DBGrid);
+                        break;
                 }
             }
         }

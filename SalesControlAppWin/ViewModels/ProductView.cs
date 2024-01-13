@@ -27,7 +27,6 @@ namespace PresentationLayer.ViewModels
             DBGridControl.AddColumn(dataGrid, "Доступна\nкількість", "AvailableQuantity");
             DBGridControl.AddColumn(dataGrid, "Постачальник", "SupplierDTO.NameSuppliers", true);
             DBGridControl.AddColumn(dataGrid, "Категорія", "GroupproductDTO.NameGroupproducts", true);
-            DBGridControl.AddColumn(dataGrid, "Адреса доставки", "Address", true);
 
         }
 

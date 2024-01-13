@@ -1,11 +1,8 @@
 ﻿using BusinessLogicLayer.DTO;
 using BusinessLogicLayer.Services.Impl;
 using PresentationLayer.Control;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -15,13 +12,22 @@ namespace PresentationLayer.ViewModels.Control
     {
         public static void PrintToDataGrid(DataGrid dataGrid)
         {
-            DBGridControl.DelOllColumn(dataGrid);
-            dataGrid.ItemsSource = new UserService().GetAll()
-                .ToList();
+            if (new UserService().GetCurrentUser().Type.Equals("Admin"))
+            {
+                DBGridControl.DelOllColumn(dataGrid);
+                dataGrid.ItemsSource = new UserService().GetAll()
+                    .ToList();
 
-            DBGridControl.AddColumn(dataGrid, "id", "Iduser", true);
-            DBGridControl.AddColumn(dataGrid, "Логін", "Login");
-            DBGridControl.AddColumn(dataGrid, "Тип", "Type");
+                DBGridControl.AddColumn(dataGrid, "id", "Iduser", true);
+                DBGridControl.AddColumn(dataGrid, "Логін", "Login");
+                DBGridControl.AddColumn(dataGrid, "Тип", "Type");
+            }
+            else
+            {
+                MessageBox.Show("У вас немає доступу до цієї таблиці");
+                dataGrid.ItemsSource = null;
+            }
+
 
         }
 

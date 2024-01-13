@@ -228,7 +228,7 @@ public partial class StoresDbContext : DbContext
                 .HasMaxLength(100)
                 .HasColumnName("login");
             entity.Property(e => e.Password)
-                .HasMaxLength(100)
+                .HasMaxLength(1000)
                 .HasColumnName("password");
             entity.Property(e => e.Type)
                 .HasColumnType("enum('Admin','Store_manager')")
