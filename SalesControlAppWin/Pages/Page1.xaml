@@ -272,7 +272,7 @@
                     <SolidColorBrush Color="#FF707070" Opacity="0.1"/>
                 </Button.BorderBrush>
                 <Button.Background>
-                    <ImageBrush ImageSource="D:\Учоба\C#\Coursework\SalesControlApp\SalesControlApp\View\Rec\Img\refresh.png"/>
+                    <ImageBrush ImageSource="D:\Учоба\C#\Coursework\SalesControlAppWin\SalesControlAppWin\Rec\Img\refresh.png"/>
                 </Button.Background>
             </Button>
 
